@@ -1,0 +1,18 @@
+{
+  "name": "nbt-html",
+  "version": "1.0.0",
+  "description": "0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "null"
+  },
+  "keywords": [
+    "null"
+  ],
+  "author": "Choigame123",
+  "license": "ISC"
+}

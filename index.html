@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- meata tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="NBT Editor/Decode/Encode minecraft BE!" />
+    <meta name="application-name" content="NBT Encode/Decode">
+    <meta name="apple-mobile-web-app-title" content="NBT Editor">
+    <meta name="msapplication-navbutton-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="msapplication-starturl" content="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+     <!-- Open Graph meta tags (for social media sharing) -->
+    <meta property="og:title" content="Minecraft NBT Editor">
+    <meta property="og:locale" content="en-US">
+    <meta property="og:description" content="Fully functional manifest generator for minecraft BE!">
+    <meta property="og:image" content="https://raw.githubusercontent.com/Choigame123/mcpe-nbt-parse/main/thumbnail.png">
+    <meta property="og:url" content="NBT Editor/Decode/Encode minecraft BE!">
+    <meta name="author" content="Vũ Quang Hào">
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Minecraft NBT Editor">
+    <meta name="twitter:description" content="NBT Editor/Decode/Encode minecraft BE!">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/Choigame123/mcpe-nbt-parse/main/thumbnail.png">
+
+    <!-- aliable link -->
+    <link rel="icon" type="image/png" href="./favico.png"/>
+    <link rel="apple-touch-icon" type="image/png" href="./favico.png"/>
+    <link rel="alternate" title="Manifest Generator" href="" hreflang="en"/>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./navigation.css"/>
+    <link rel="stylesheet" href="./index.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/tomorrow-night-bright.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/fold/foldgutter.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/show-hint.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/lint/lint.min.css"/>
+
+    <!-- Codemirror scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/display/placeholder.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/edit/matchtags.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/fold/foldcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/fold/foldgutter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/lint/javascript-lint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/lint/json-lint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/javascript-hint.min.js"></script>
+
+    <!-- Other scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script src="./nbt-editor.obf.js"></script>
+
+    <title>Minecraft NBT Editor</title>
+
+    <script>
+        let state = false;
+        $(() => {
+            $(".nav-section").hide();
+            $(".nav-bar img").click((t) => {
+                if (!state) $(".nav-section").show(),
+                (state = true);
+                else $(".nav-section").hide(),
+                (state = false);
+            });
+        });
+        /*default color (dark theme)
+        {
+            --bg-color: #191919;
+            --dialog-bg-color: #1B1B1B;
+            --dialog-boder-color: #505050;
+            --form-bg-color: #CBFF97;
+            --text-color: #50A000;
+            --form-text-color: #4D9A00;
+            --dialog: none;
+        }
+        */
+    </script>
+</head>
+<body>
+<audio src="./app-theme/Instrumental.mp3" style="display:none" id="audio">some music</audio>
+<div id="nav">
+<nav class="nav-bar">
+<div class="header" style="text-align:center">
+    <img style="vertical-align:middle" src="./app-theme/n-icon.png">
+    <text style="vertical-align:middle">Minecraft Tools > NBT Decode/Encode</text>
+</div>
+<br>
+<br>
+<div class="nav-section" hidden>
+<div class="header-box">
+    <text> Other Tools </text>
+</div>
+<div class="nb-box">
+<details>
+    <summary>Minecraft Tools</summary>
+        <ol>
+        <!-- https://choigame123.github.io/mcpe-nbt-parse/ -->
+        <li onclick="$('.nav-section').hide(), (state = false)"><u>NBT Editor</u></li>
+        <li onclick="UIController.redirectTo('https://choigame123.github.io/minecraft-manifest/')"><u>Manifest Generatorr</u></li>
+        </ol>
+</details>
+</div>
+<div class="box">
+<details>
+    <summary>Json Tools</summary>
+        <ol>
+        <li onclick="UIController.redirectTo('https://choigame123.github.io/json-obfuscate')"><u>Json Obfuscate</u></li>
+        <li onclick="UIController.redirectTo('')"><u>Json Deobfuscate</u></li>
+        <li onclick="UIController.redirectTo('')"><u>Json Minify</u></li>
+        <li onclick="UIController.redirectTo('')"><u>Json Beautify</u></li>
+        </ol>
+</details>
+</div>
+<br>
+    <label style="text-align: right; vertical-align: center; padding: 0" id="play-btn"><u onclick="UIController.audioPlay();">Some audio</u></label>
+</div>
+</nav>
+</div>
+<div id="float">
+    <h1>NBT Decode/Encode</h1>
+<br>
+<br>
+<div class="tt" style="padding: 20px 10px">
+    <h4>About this tool</h4>
+    <p class="center">
+        - Blockphotograph is no longer usable. It has not been updated for newer versions of minecraft.
+    </p>
+    <p>
+        - This is a (temporary) replacement for blockphotograph. You can decode, edit, encode nbt files intuitively and conveniently.
+    </p>
+<br>
+<br>
+    <h4>How to use</h4>
+    <p class="center">
+        - Upload you nbt file. If the file is correct, it will be decoded. You can edit it by UI or just edit raw one.
+    </p>
+    <p>
+        - You can download a decode json or encode file has been edited.
+    </p>
+<br>
+<br>
+    <h4>Note</h4>
+    <p class="center">
+        - Currently, you cannot use it to decode .ldb files (level chunk data). According to <u class="no-select" onclick="https://github.com/Mojang/leveldb-mcpe/blob/master/mcpe_sample_setup.cpp">leveldb-mcpe</u>, mcpe uses Zlib compressor which i'm trying to figure out.
+    </p>
+    <p class="last">
+        - Any contribution on decompress (not decode) file .ldb is welcome (I tried with snappy.js).
+    </p>
+<br>
+<br>
+    <h4>Skill Issue 🐧</h4>
+    <p class="center">
+        - Vi: Mấy con gà dùng để hack sinh tồn thì t cũng chào thua.
+    </p>
+    <p class="last">
+        - En: Using this to hack the survival world is not recommended.
+    </p>
+<br>
+<br>
+    <h4>Creator</h4>
+    <p class="center" onclick="devMode()">
+        - Made by: Choigame(Vũ Quang Hào)
+    </p>
+    <p class="center">
+        - Source code: <u class="no-select" onClick="UIController.redirectTo('https://github.com/Choigame123/mcpe-nbt-parse')">Click Here</u>
+    </p>
+    <p class="last">
+        - Thank for visited - web của con gà 🐿️
+    </p>
+</div>
+<div class="no-center">
+
+<!-- Toggle -->
+<br>
+<div class="toggle-button-group">
+    <input type="radio" id="radio1" name="toggle" value="all" checked>
+    <label for="radio1">Editor</label>
+    <input type="radio" id="radio2" name="toggle" value="false">
+    <label for="radio2">Encode</label>
+    <input type="radio" id="radio3" name="toggle" value="false">
+    <label for="radio3">Decode</label>
+</div>
+
+<!-- Editor -->
+<form id="generator" class="generator" name="btn-1">
+<div class="input-box" id="dropzone1">
+    <h1 style="text-align:center;color:#36A592"> NBT Editor </h1>
+    <br>
+    <label style="font-size: 1rem; color: #FF1000"><u>Note:</u> The current editor does not provide a UI for the .mcstructure file editor. Also you can't add/remove properties (at least for now), it should be added by the game itself</label>
+    <br>
+    <br>
+    <label style="font-size: 1rem;"> Choose you file or drop you file in this box </label>
+    <br>
+    <input id="editor-file-in" type="file">
+    <label for="editor-file-in" class>Open file</label>
+    <label id="btn-lf" onclick="loadLastFile()" class="file" type="button">Last edit file</label> 
+    <label for="btn-lf" id="edit-file-label" class="file-text">Choose file</label>
+    <p style="color: skyblue; text-decoration: underline; margin-top: 5px;"id="last-file-load-label" />
+</div>
+<div id="editor-selector" class="selector-box" hidden>
+    <h4 style="text-align:center; margin-top: 0px; margin-bottom: 5px;">Output options</h4>
+    <label style="color: #FFCE41">+ Use the editor (below) to edit!</label>
+    <br>
+    <br>
+    <b><label style="color: #00A4C2; margin-bottom: 5px">+ JSON:</label></b>
+    <label for="encode-indent">Tab indent</label>
+    <input type="number" id="encode-indent" class="nbt text" style="width: 2vw; text-align: left;" value="4"></input>
+    <label id="sth">(<u class="no-select"  onclick="nbtEditor.download()">Download</u> or <u class="no-select" onclick="nbtEditor.nbtClipboard()">copy to clipboard</u>)</label>
+    <textarea id="json-preview"></textarea>
+    <br>
+    <b><label style="color: #00A4C2; margin-bottom: 5px">+ NBT:</label></b>
+    <label><u class="no-select" onclick="nbtEditor.encodeDownload()">Download</u></label>
+</div>
+<div id="editor-output" class="output-box">No data found...</div>
+</form>
+
+<!-- Encode -->
+<form id="generator1" class="generator" name="btn-2">
+<div class="input-box" id="dropzone2">
+    <h1 style="text-align:center;color:#36A592"> NBT Encode </h1>
+    <br>
+    <label style="font-size: 1rem; color: #FF1000"><u>Note:</u> The input json must be follow this ruler:
+    </label>
+    <br>
+    <textarea id="nbt-interface">
+interface NBTRoot {
+    data: NBT,
+    has_header: boolean,
+    header: Array<nunber, number>,
+    empty_property: boolean,
+    type: -1
+}
+interface NBT {
+    data: NBT | List,
+    type: number
+}
+interface List {
+    data: Array<NBT | unknow>,
+    nested: boolean,
+    type: 9,
+    data_type: number
+}
+    </textarea>
+    <br>
+    <label style="font-size: 1em"> Paste you nbt json: </label>
+    <br>
+    <textarea id="encode-input-area" placeholder="Paste you nbt json here..."></textarea>
+    <br>
+    <label> Or choose you file:</label>
+    <input id="encode-file-in" type="file">
+    <label for="encode-file-in" class>Open file</label>
+    <label id="encode-file-label" class="file-text">Choose file</label>
+</div>
+    <h3 style="text-align:center;color:#36A592"> Output </h3>
+    <label id="encode-download-btn" class="no-select" style="color: #00A4C2;" hidden><u onclick="nbtEncode.download()">Download you nbt file</u></label>
+    <textarea id="encode-output">
+No data found...
+    </textarea>
+</form>
+
+<!-- Decode -->
+<form id="generator2" class="generator" name="btn-3">
+<div class="input-box" id="dropzone3">
+    <h1 style="text-align:center;color:#36A592"> NBT Decode </h1>
+    <br>
+    <br>
+    <label style="font-size: 1em"> Choose you file: </label>
+    <input id="decode-file-in" type="file">
+    <label for="decode-file-in" class>Open file</label>
+    <label id="decode-file-label" class="file-text">Choose file</label>
+</div>
+<!-- Đang làm mà dạt dào cảm xúc quá👍 -->
+    <h4 style="text-align:left;margin-top: 30px; margin-bottom: 3px;color:#36A592"> Output Option </h4>
+<div class="tab">
+    <label for="encode-indent">Tab indent</label>
+    <input type="number" id="decode-indent" class="nbt text" style="width: 2vw; text-align: left;" value="4" min="0" max="8"></input>
+</div>
+    <h4 style="text-align:left;margin-top: 10px; margin-bottom: 0px;color:#36A592"> Output Json </h4>
+<div class="tab">
+    <label id="decode-json-download-btn" style="color: #00A4C2;" hidden>+ Download you <u class="no-select" onclick="nbtDecode.jsonDownload();">json file</u> or <u class="no-select" onclick="nbtDecode.jsonClipboard();">copy to clipboard</u></label>
+</div>
+    <textarea id="decode-json-output">
+No data found...
+    </textarea>
+    <h4 style="text-align:left;margin-top: 10px; margin-bottom: 0px;color:#36A592"> Output NBT </h4>
+<div class="tab">
+    <label id="decode-nbt-download-btn" style="color: #00A4C2;" hidden>+ Download you <u class="no-select" onclick="nbtDecode.nbtDownload();">raw-nbt json file</u></label>
+</div>
+    <textarea id="decode-nbt-output">
+No data found...
+    </textarea>
+</div>
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>
