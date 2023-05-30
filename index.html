@@ -154,14 +154,14 @@
 <br>
     <h4>Note</h4>
     <p class="center">
-        - Currently, you cannot use it to decode .ldb files (level chunk data). According to <u class="no-select" onclick="https://github.com/Mojang/leveldb-mcpe/blob/master/mcpe_sample_setup.cpp">leveldb-mcpe</u>, mcpe uses Zlib compressor which i'm trying to figure out.
+        - Currently, you cannot use it to decode .ldb files (level chunk data). According to <u class="no-select" onclick="UIController.redirectTo('https://github.com/Mojang/leveldb-mcpe/blob/master/mcpe_sample_setup.cpp')">leveldb-mcpe</u>, mcpe uses Zlib compressor (in java we use `GZIPInputStream` do unzip) which i'm trying to figure out.
     </p>
     <p class="last">
         - Any contribution on decompress (not decode) file .ldb is welcome (I tried with snappy.js).
     </p>
 <br>
 <br>
-    <h4>Skill Issue 🐧</h4>
+    <h4>Skill Issue ._.</h4>
     <p class="center">
         - Vi: Mấy con gà dùng để hack sinh tồn thì t cũng chào thua.
     </p>
@@ -178,7 +178,7 @@
         - Source code: <u class="no-select" onClick="UIController.redirectTo('https://github.com/Choigame123/mcpe-nbt-parse')">Click Here</u>
     </p>
     <p class="last">
-        - Thank for visited - web của con gà 🐿️
+        - Thank for visited - web của con gà:skull:
     </p>
 </div>
 <div class="no-center">
@@ -238,7 +238,7 @@
     <textarea id="nbt-interface">
 interface NBTRoot {
     data: NBT,
-    has_header: boolean,
+    hasHeader: boolean,
     header: Array<nunber, number>,
     empty_property: boolean,
     type: -1
