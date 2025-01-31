@@ -34,20 +34,30 @@ app.use(
   response.status(404);
   response.send(`Page not found`);
 })
-.get('/index.min.css/', (request, response) => {
+.get('/choigame.css/', (request, response) => {
   console.log(`${time()}Request for: ${request.url}`);
   response.setHeader('content-type', 'text/css');
-  response.sendFile(__dirname + "/index.min.css");
+  response.sendFile(__dirname + "/choigame.css");
+})
+.get('/choigame.js/', (request, response) => {
+  console.log(`${time()}Request for: ${request.url}`);
+  response.setHeader('content-type', 'text/javascript');
+  response.sendFile(__dirname + "/choigame.js");
 })
 .get('/nbt-editor.full.js/', (request, response) => {
   console.log(`${time()}Request for: ${request.url}`);
   response.setHeader('content-type', 'text/javascript');
   response.sendFile(__dirname + "/nbt.js");
 })
-.get('/nbt-editor.obf.js/', (request, response) => {
+.get('/nbt-editor.min.js/', (request, response) => {
   console.log(`${time()}Request for: ${request.url}`);
   response.setHeader('content-type', 'text/javascript');
-  response.sendFile(__dirname + "/nbt-editor.obf.js");
+  response.sendFile(__dirname + "/nbt.min.js");
+})
+.get('/nbt-choigame.js/', (request, response) => {
+  console.log(`${time()}Request for: ${request.url}`);
+  response.setHeader('content-type', 'text/html');
+  response.sendFile(__dirname + "/nbt-choigame.js");
 })
 .get('/navigation.css/', (request, response) => {
   console.log(`${time()}Request for: ${request.url}`);
@@ -64,7 +74,6 @@ app.use(
   response.setHeader('content-type', 'text/html');
   response.sendFile(__dirname + "/index.html");
 })
-/* more 16 items... */
 .listen(port,host,(error) => {
   if (error) console.error(`Error: can't listen website (error code: ${error.code})`);
   else console.timeEnd(`Web host at http://${host}:${port}/`);

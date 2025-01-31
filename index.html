@@ -60,8 +60,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/axios@0.24.0/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
-    <script src="./nbt-editor.obf.js"></script>
+    <script src="./nbt-editor.full.js"></script>
+    <!-- 
+    <script src="https://cdn.jsdelivr.net/npm/browserify-zlib@0.2.0/src/index.min.js"></script>
+    <script src="./zlib/compressor.js"></script>
+    -->
 
     <title>Minecraft NBT Editor</title>
 
@@ -101,7 +104,7 @@
 <br>
 <div class="nav-section" hidden>
 <div class="header-box">
-    <text> Other Tools </text>
+    <text style=""> Other Tools </text>
 </div>
 <div class="nb-box">
 <details>
@@ -154,14 +157,14 @@
 <br>
     <h4>Note</h4>
     <p class="center">
-        - Currently, you cannot use it to decode .ldb files (level chunk data). According to <u class="no-select" onclick="UIController.redirectTo('https://github.com/Mojang/leveldb-mcpe/blob/master/mcpe_sample_setup.cpp')">leveldb-mcpe</u>, mcpe uses Zlib compressor (in java we use `GZIPInputStream` do unzip) which i'm trying to figure out.
+        - Currently, you cannot use it to decode .ldb files (level chunk data). According to <u class="no-select" onclick="https://github.com/Mojang/leveldb-mcpe/blob/master/mcpe_sample_setup.cpp">leveldb-mcpe</u>, mcpe uses Zlib compressor which i'm trying to figure out.
     </p>
     <p class="last">
         - Any contribution on decompress (not decode) file .ldb is welcome (I tried with snappy.js).
     </p>
 <br>
 <br>
-    <h4>Skill Issue ._.</h4>
+    <h4>Skill Issue 🐧</h4>
     <p class="center">
         - Vi: Mấy con gà dùng để hack sinh tồn thì t cũng chào thua.
     </p>
@@ -178,7 +181,7 @@
         - Source code: <u class="no-select" onClick="UIController.redirectTo('https://github.com/Choigame123/mcpe-nbt-parse')">Click Here</u>
     </p>
     <p class="last">
-        - Thank for visited - web của con gà:skull:
+        - Thank for visited - web của con gà 🐿️
     </p>
 </div>
 <div class="no-center">
@@ -229,7 +232,7 @@
 
 <!-- Encode -->
 <form id="generator1" class="generator" name="btn-2">
-<div class="input-box" id="dropzone2" style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+<div class="input-box" id="dropzone2">
     <h1 style="text-align:center;color:#36A592"> NBT Encode </h1>
     <br>
     <label style="font-size: 1rem; color: #FF1000"><u>Note:</u> The input json must be follow this ruler:
@@ -238,7 +241,7 @@
     <textarea id="nbt-interface">
 interface NBTRoot {
     data: NBT,
-    hasHeader: boolean,
+    has_header: boolean,
     header: Array<nunber, number>,
     empty_property: boolean,
     type: -1
@@ -259,7 +262,8 @@ interface List {
     <br>
     <textarea id="encode-input-area" placeholder="Paste you nbt json here..."></textarea>
     <br>
-    <label style="font-size: 1rem;"> Choose you file (or drop you file in this box): </label>
+    <label style="font-size: 1rem;"> Choose you file or drop you file in this box </label>
+    <br>
     <input id="encode-file-in" type="file">
     <label for="encode-file-in" class>Open file</label>
     <label id="encode-file-label" class="file-text">Choose file</label>
@@ -273,11 +277,12 @@ No data found...
 
 <!-- Decode -->
 <form id="generator2" class="generator" name="btn-3">
-<div class="input-box" id="dropzone3" style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+<div class="input-box" id="dropzone3" style="border-bottom-left-radius: 8px; border-bottom-right-radius: 8px">
     <h1 style="text-align:center;color:#36A592"> NBT Decode </h1>
     <br>
     <br>
-    <label style="font-size: 1rem;"> Choose you file (or drop you file in this box): </label>
+    <label style="font-size: 1rem;"> Choose you file or drop you file in this box </label>
+    <br>
     <input id="decode-file-in" type="file">
     <label for="decode-file-in" class>Open file</label>
     <label id="decode-file-label" class="file-text">Choose file</label>

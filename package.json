@@ -14,5 +14,10 @@
     "null"
   ],
   "author": "Choigame123",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@minecraft/server": "^1.7.0-beta.1.20.40-stable",
+    "@minecraft/server-ui": "^1.1.0",
+    "@minecraft/vanilla-data": "^1.20.30"
+  }
 }
